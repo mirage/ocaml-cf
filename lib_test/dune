@@ -10,5 +10,4 @@
  (alias runtest)
  (action
   (run ./test.exe))
- (package cf-lwt)
-)
+ (package cf-lwt))
