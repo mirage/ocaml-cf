@@ -25,4 +25,5 @@ for type-safe stub generation.")
 `cf` library for the low-level bindings.")
  (depends
   (cf (= :version))
+  (alcotest :with-test)
   (lwt (>= "3.2.0"))))
