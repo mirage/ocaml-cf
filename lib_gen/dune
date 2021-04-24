@@ -3,15 +3,21 @@
 (library
  (name types)
  (libraries ctypes.stubs)
+ (enabled_if
+  (= %{system} macosx))
  (modules types))
 
 (executable
  (name typegen)
+ (enabled_if
+  (= %{system} macosx))
  (libraries ctypes.stubs ctypes.foreign types)
  (modules typegen))
 
 (rule
  (targets detect.c)
+ (enabled_if
+  (= %{system} macosx))
  (deps typegen.exe)
  (action
   (run %{deps})))
@@ -20,12 +26,16 @@
 
 (rule
  (targets detect.exe)
+ (enabled_if
+  (= %{system} macosx))
  (deps detect.c)
  (action
   (run %{cc} -I %{ocaml_where} -I %{lib:ctypes:} -o %{targets} %{deps})))
 
 (rule
  (targets types_detected.ml)
+ (enabled_if
+  (= %{system} macosx))
  (deps detect.exe)
  (action
   (with-stdout-to
@@ -38,11 +48,15 @@
 
 (executable
  (name bindgen)
+ (enabled_if
+  (= %{system} macosx))
  (libraries ctypes.stubs ctypes.foreign types)
  (modules bindgen bindings types_detected))
 
 (rule
  (targets cf_stubs.c generated.ml)
+ (enabled_if
+  (= %{system} macosx))
  (deps bindgen.exe)
  (action
   (run %{deps})))
