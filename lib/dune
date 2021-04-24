@@ -4,6 +4,7 @@
   (names cf_stubs cf_util))
  (name cf)
  (public_name cf)
+ (enabled_if (= %{system} macosx))
  (libraries ctypes.stubs ctypes.foreign)
  (c_library_flags -framework CoreFoundation))
 
