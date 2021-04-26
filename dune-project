@@ -7,6 +7,7 @@
 (license ISC)
 (authors "David Sheets" "Thomas Gazagnaire")
 (maintainers "Thomas Gazagnaire")
+(documentation "https://mirage.github.io/ocaml-cf/")
 
 (package
  (name cf)

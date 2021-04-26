@@ -8,6 +8,7 @@ maintainer: ["Thomas Gazagnaire"]
 authors: ["David Sheets" "Thomas Gazagnaire"]
 license: "ISC"
 homepage: "https://github.com/mirage/ocaml-cf"
+doc: "https://mirage.github.io/ocaml-cf/"
 bug-reports: "https://github.com/mirage/ocaml-cf/issues"
 depends: [
   "dune" {>= "2.8"}
