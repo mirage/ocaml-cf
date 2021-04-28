@@ -1,6 +1,9 @@
-# 0.3 (2021-04-24)
+# 0.4 (2021-04-28)
 
 * Fix a bug in the retention of values in CFArrays (@patricoferris)
+
+# 0.3 (2021-04-24)
+
 * Bump dune version and use opam file autogeneration (@avsm).
 * Install library on non-macOS platforms as an empty archive,
   so that it works better in a monorepo (@avsm).
