@@ -121,7 +121,11 @@ module Array = struct
         let n = CArray.length a in
         let p = CArray.start a in
         let open C.CFArray in
-        let cf = create None (coerce (ptr T.typ) (ptr (ptr void)) p) n None in
+        let cf =
+          create None
+            (coerce (ptr T.typ) (ptr (ptr void)) p)
+            n (Some Callback.default)
+        in
         Gc.finalise Type.release cf;
         cf
 

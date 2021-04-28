@@ -486,6 +486,12 @@ module C (F : Cstubs.FOREIGN) = struct
           @-> typedef (ptr (ptr void)) "const void **"
           @-> returning void))
 
+    module Callback = struct
+      let typ = typedef (ptr void) "const CFArrayCallBacks"
+
+      let default = F.(foreign_value "kCFTypeArrayCallBacks" typ)
+    end
+
     (* CFArrayRef CFArrayCreate (
          CFAllocatorRef allocator,
          const void **values,
@@ -499,7 +505,7 @@ module C (F : Cstubs.FOREIGN) = struct
           (ptr_opt void
           @-> typedef (ptr (ptr void)) "const void **"
           @-> CFIndex.t
-          @-> ptr_opt void
+          @-> ptr_opt Callback.typ
           @-> returning typ))
   end
 end
