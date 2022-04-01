@@ -11,7 +11,7 @@ homepage: "https://github.com/mirage/ocaml-cf"
 doc: "https://mirage.github.io/ocaml-cf/"
 bug-reports: "https://github.com/mirage/ocaml-cf/issues"
 depends: [
-  "dune" {>= "2.8"}
+  "dune" {>= "2.9"}
   "cf" {= version}
   "alcotest" {with-test}
   "lwt" {>= "3.2.0"}
@@ -26,9 +26,11 @@ build: [
     name
     "-j"
     jobs
+    "--promote-install-files=false"
     "@install"
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
+  ["dune" "install" "-p" name "--create-install-files" name]
 ]
 dev-repo: "git+https://github.com/mirage/ocaml-cf.git"
