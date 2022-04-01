@@ -53,7 +53,6 @@ module CFRunLoop = struct
     type t = RunResult.t
 
     let pp fmt t = Format.pp_print_string fmt (RunResult.to_string t)
-
     let equal = ( = )
   end
 
@@ -64,7 +63,6 @@ module CFRunLoop = struct
     type t = Observer.Activity.t
 
     let pp fmt t = Format.pp_print_string fmt (Observer.Activity.to_string t)
-
     let equal = ( = )
   end
 
@@ -133,6 +131,6 @@ let tests =
     ("CFArray", CFArray.tests);
     ("CFRunLoop", CFRunLoop.tests);
   ]
-
 ;;
+
 Alcotest.run "CoreFoundation" tests

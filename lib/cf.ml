@@ -33,7 +33,6 @@ end
 
 module Type = struct
   let release = C.CFType.release
-
   let retain = C.CFType.retain
 end
 
@@ -51,7 +50,6 @@ module String = struct
   let ascii = Encoding.ASCII
 
   type t = unit ptr
-
   type cfstring = t
 
   let typ = ptr void
@@ -94,16 +92,13 @@ module String = struct
     type t = string
 
     let to_string t = CamlBytes.to_string (Bytes.to_bytes t)
-
     let of_string s = Bytes.of_bytes (CamlBytes.of_string s)
-
     let typ = view ~read:to_string ~write:of_string C.CFString.typ
   end
 end
 
 module Array = struct
   type t = unit ptr
-
   type cfarray = t
 
   module CArray = struct
@@ -137,9 +132,7 @@ module Array = struct
     type t = VoidPtrCArray.t
 
     let to_carray = VoidPtrCArray.read
-
     let of_carray = VoidPtrCArray.write
-
     let typ = VoidPtrCArray.typ
   end
 
@@ -176,9 +169,7 @@ module Array = struct
     type t = VoidPtrList.t
 
     let to_list cf = VoidPtrList.read (CArray.to_carray cf)
-
     let of_list list = CArray.of_carray (VoidPtrList.write list)
-
     let typ = VoidPtrList.typ
   end
 end
@@ -197,13 +188,10 @@ end
 
 module Allocator = struct
   type retain_callback_t = unit ptr -> unit ptr
-
   type release_callback_t = unit ptr -> unit
-
   type copy_description_callback_t = unit ptr -> bytes
 
   let retain_callback_typ = Foreign.funptr (ptr void @-> returning (ptr void))
-
   let release_callback_typ = Foreign.funptr (ptr void @-> returning void)
 
   let copy_description_callback_typ =
@@ -215,7 +203,6 @@ module RunLoop = struct
     type t = Default | CommonModes | Mode of string
 
     let default = !@C.CFRunLoop.Mode.default
-
     let common_modes = !@C.CFRunLoop.Mode.common_modes
 
     let of_cfstring s =
@@ -297,7 +284,6 @@ module RunLoop = struct
   end
 
   type attachment = Observer of Observer.t Obj.t
-
   type t = { runloop : unit ptr; mutable attachments : attachment list }
 
   let typ =
@@ -325,9 +311,7 @@ module RunLoop = struct
     let obj =
       object
         method cf = observer
-
         method release = remove_observer runloop observer mode
-
         method retain = ()
       end
     in
