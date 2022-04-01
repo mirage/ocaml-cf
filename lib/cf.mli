@@ -23,7 +23,6 @@ end
 
 module Type : sig
   val release : unit Ctypes.ptr -> unit
-
   val retain : unit Ctypes.ptr -> unit Ctypes.ptr
 end
 
@@ -49,14 +48,12 @@ module String : sig
   end
 
   type t
-
   type cfstring = t
 
   module Bytes : sig
     type t = bytes
 
     val to_bytes : cfstring -> t
-
     val of_bytes : t -> cfstring
 
     include PTR_TYP with type t := t
@@ -66,7 +63,6 @@ module String : sig
     type t = string
 
     val to_string : cfstring -> t
-
     val of_string : t -> cfstring
 
     include PTR_TYP with type t := t
@@ -77,14 +73,12 @@ end
 
 module Array : sig
   type t
-
   type cfarray = t
 
   module CArray : sig
     type t = unit Ctypes.ptr Ctypes.CArray.t
 
     val to_carray : cfarray -> t
-
     val of_carray : t -> cfarray
 
     module Make (T : PTR_TYP) : sig
@@ -98,7 +92,6 @@ module Array : sig
     type t = unit Ctypes.ptr list
 
     val to_list : cfarray -> t
-
     val of_list : t -> cfarray
 
     module Make (T : PTR_TYP) : sig
@@ -119,15 +112,11 @@ module Allocator : sig
   open Ctypes
 
   type retain_callback_t = unit ptr -> unit ptr
-
   type release_callback_t = unit ptr -> unit
-
   type copy_description_callback_t = unit ptr -> bytes
 
   val retain_callback_typ : retain_callback_t typ
-
   val release_callback_typ : release_callback_t typ
-
   val copy_description_callback_typ : copy_description_callback_t typ
 end
 
@@ -171,25 +160,19 @@ module RunLoop : sig
     type t = Finished | Stopped | TimedOut | HandledSource
 
     val typ : t Ctypes.typ
-
     val to_string : t -> string
   end
 
   val typ : t Ctypes.typ
-
   val remove_observer : t -> Observer.t -> Mode.t -> unit
-
   val add_observer : t -> Observer.t -> Mode.t -> unit
-
   val run : unit -> unit
 
   val run_in_mode :
     ?return_after_source_handled:bool -> ?seconds:float -> Mode.t -> RunResult.t
 
   val get_current : unit -> t
-
   val stop : t -> unit
-
   val release : t -> unit
 end
 

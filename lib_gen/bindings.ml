@@ -27,20 +27,15 @@ module C (F : Cstubs.FOREIGN) = struct
 
   module CFType = struct
     let typ = typedef (ptr void) "CFTypeRef"
-
     let retain = F.(foreign "CFRetain" (typ @-> returning typ))
-
     let release = F.(foreign "CFRelease" (typ @-> returning void))
   end
 
   module CFIndex = struct
     (* typedef signed long CFIndex; *)
     let typ = long
-
     let of_int = Signed.Long.of_int
-
     let to_int = Signed.Long.to_int
-
     let t = view ~read:to_int ~write:of_int typ
   end
 
@@ -97,13 +92,9 @@ module C (F : Cstubs.FOREIGN) = struct
     type range
 
     let struct_typ : range structure typ = structure "CFRange"
-
     let location = field struct_typ "location" CFIndex.t
-
     let length = field struct_typ "length" CFIndex.t
-
     let () = seal struct_typ
-
     let typ : range structure typ = typedef struct_typ "CFRange"
 
     type t = { location : int; length : int }
@@ -181,7 +172,6 @@ module C (F : Cstubs.FOREIGN) = struct
 
     (* typedef const struct __CFString *CFStringRef; *)
     let typ = typedef (ptr void) "CFStringRef"
-
     let const_typ = typedef typ "const CFStringRef"
 
     (* CFIndex CFStringGetLength (
@@ -203,7 +193,6 @@ module C (F : Cstubs.FOREIGN) = struct
           (typ @-> ocaml_typ @-> CFIndex.t @-> Encoding.t @-> returning bool))
 
     let get_c_string_bytes = get_c_string ocaml_bytes
-
     let get_c_string_string = get_c_string ocaml_string
 
     (* CFIndex CFStringGetBytes(
@@ -230,9 +219,7 @@ module C (F : Cstubs.FOREIGN) = struct
           @-> returning CFIndex.t))
 
     let get_bytes_ptr = get_bytes (ptr_opt uint8_t)
-
     let get_bytes_bytes = get_bytes ocaml_bytes
-
     let get_bytes_string = get_bytes ocaml_string
 
     (* CFStringRef CFStringCreateWithBytes(
@@ -253,7 +240,6 @@ module C (F : Cstubs.FOREIGN) = struct
           @-> returning typ))
 
     let create_with_bytes_bytes = create_with_bytes ocaml_bytes
-
     let create_with_bytes_string = create_with_bytes ocaml_string
 
     (* CFStringRef CFStringCreateWithBytesNoCopy(
@@ -443,7 +429,6 @@ module C (F : Cstubs.FOREIGN) = struct
           (typ @-> Observer.typ @-> CFString.typ @-> returning void))
 
     let get_current = F.(foreign "CFRunLoopGetCurrent" (void @-> returning typ))
-
     let run = F.(foreign "caml_cf_run_loop_run" (void @-> returning void))
 
     (* CFRunLoopRunResult CFRunLoopRunInMode(
@@ -488,7 +473,6 @@ module C (F : Cstubs.FOREIGN) = struct
 
     module Callback = struct
       let typ = typedef (ptr void) "const CFArrayCallBacks"
-
       let default = F.(foreign_value "kCFTypeArrayCallBacks" typ)
     end
 
