@@ -1,3 +1,8 @@
+# 0.5.0 (2022-04-01)
+
+* Fix build with `opam-monorepo` (#2, @samoht)
+* Update ocamlformat config to 0.21.0 (#3. @samoht)
+
 # 0.4 (2021-04-28)
 
 * Fix a bug in the retention of values in CFArrays (@patricoferris)
