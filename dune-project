@@ -1,4 +1,4 @@
-(lang dune 2.9)
+(lang dune 3.0)
 (name cf)
 
 (generate_opam_files true)
@@ -16,7 +16,7 @@
 for type-safe stub generation.")
  (depends
   base-bytes
-  (ctypes (>= "0.4.0"))
+  (ctypes (>= "0.14.0"))
   ctypes-foreign))
 
 (package
