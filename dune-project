@@ -1,5 +1,6 @@
-(lang dune 2.9)
+(lang dune 3.0)
 (name cf)
+(using ctypes 0.1)
 
 (generate_opam_files true)
 
@@ -14,9 +15,10 @@
  (synopsis "OCaml bindings to macOS CoreFoundation")
  (description "These bindings use [ctypes](https://github.com/ocamllabs/ocaml-ctypes)
 for type-safe stub generation.")
+ (allow_empty)
  (depends
   base-bytes
-  (ctypes (>= "0.4.0"))
+  (ctypes (>= "0.14.0"))
   ctypes-foreign))
 
 (package
@@ -24,6 +26,7 @@ for type-safe stub generation.")
  (synopsis "Lwt interface to macOS CoreFoundation")
  (description "An Lwt interface to the macOS CoreFoundation library, using the
 `cf` library for the low-level bindings.")
+ (allow_empty)
  (depends
   (cf (= :version))
   (alcotest :with-test)
