@@ -28,9 +28,7 @@
  (targets detect.exe)
  (enabled_if
   (= %{system} macosx))
- (deps
-  detect.c
-  (package ctypes))
+ (deps detect.c)
  (action
   (run %{cc} -I %{ocaml_where} -I %{lib:ctypes:} -o %{targets} %{deps})))
 
