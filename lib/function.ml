@@ -17,9 +17,9 @@
  *)
 
 open Ctypes
-module Type = Types.C (Types_detected)
+module Type = Types_generated
 
-module C (F : Cstubs.FOREIGN) = struct
+module Functions (F : Cstubs.FOREIGN) = struct
   let memcpy_bytes =
     F.(
       foreign "memcpy"

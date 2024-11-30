@@ -14,8 +14,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  *)
+open Ctypes
 
-module C (F : Cstubs.Types.TYPE) = struct
+module Types (F : Types.TYPE) = struct
   module StringEncoding = struct
     (* typedef UInt32 CFStringEncoding; *)
     let t = F.uint32_t
