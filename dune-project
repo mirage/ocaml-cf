@@ -15,7 +15,6 @@
  (description "These bindings use [ctypes](https://github.com/ocamllabs/ocaml-ctypes)
 for type-safe stub generation.")
  (depends
-  base-bytes
   (ctypes (>= "0.4.0"))
   ctypes-foreign))
 
